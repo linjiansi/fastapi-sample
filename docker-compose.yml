@@ -1,0 +1,10 @@
+name: fastapi-sample-app
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/src
+      - .dockervenv:/src/.venv
+    ports:
+      - "8000:8000"
