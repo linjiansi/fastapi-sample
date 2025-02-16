@@ -8,3 +8,19 @@ services:
       - .dockervenv:/src/.venv
     ports:
       - "8000:8000"
+
+  db:
+    image: mysql:8.4.4
+    platform: linux/x86_64
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "fastapi_sample_app"
+      TZ: "Asia/Tokyo"
+    volumes:
+      - db-data:/var/lib/mysql
+    command: mysqld --innodb_use_native_aio=0
+    ports:
+      - "13306:3306"
+
+volumes:
+  db-data:
